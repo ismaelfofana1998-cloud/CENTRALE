@@ -1,0 +1,226 @@
+/* ============================================================================
+   Espace Centrale — composants
+   ============================================================================ */
+
+.app { display: flex; min-height: 100vh; }
+
+/* --- Sidebar ------------------------------------------------------------ */
+.sidebar {
+  width: var(--sidebar-largeur); flex-shrink: 0;
+  background: var(--ink); color: var(--papier);
+  display: flex; flex-direction: column;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+.sidebar-marque { padding: 20px 18px 16px; border-bottom: 1px solid rgba(255,241,232,0.12); }
+.sidebar-marque .nom { font-weight: 800; font-size: 16px; }
+.sidebar-marque .entreprise { font-size: 12px; color: var(--peche); margin-top: 2px; }
+
+.sidebar-nav { flex: 1; padding: 10px 10px; display: flex; flex-direction: column; gap: 2px; }
+.sidebar-groupe { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,241,232,0.45); padding: 14px 10px 6px; }
+.sidebar-lien {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--r-sm);
+  color: rgba(255,241,232,0.8); font-size: 13.5px; font-weight: 600; background: none; border: none;
+  width: 100%; text-align: left; cursor: pointer;
+}
+.sidebar-lien:hover { background: rgba(255,241,232,0.08); color: var(--papier); }
+.sidebar-lien[aria-current="true"] { background: var(--terracotta); color: var(--papier); }
+.sidebar-lien svg { flex-shrink: 0; }
+.sidebar-lien span:not(.sidebar-bulle) { flex: 1; }
+.sidebar-bulle {
+  flex-shrink: 0; min-width: 19px; height: 19px; padding: 0 5px; border-radius: 999px;
+  background: var(--alerte); color: #fff; font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.sidebar-lien[aria-current="true"] .sidebar-bulle { background: rgba(255,255,255,0.28); }
+
+.sidebar-pied { padding: 14px 18px; border-top: 1px solid rgba(255,241,232,0.12); font-size: 12.5px; }
+.sidebar-pied .nom-utilisateur { font-weight: 700; color: var(--papier); margin-top: 8px; }
+.sidebar-pied button { background: none; border: none; color: var(--peche); font-size: 12.5px; padding: 6px 0 0; cursor: pointer; }
+.btn-cloche-sidebar {
+  position: relative; width: 100%; text-align: left; display: flex; align-items: center; gap: 6px;
+  padding: 8px 0 !important;
+}
+.bulle-cloche-sidebar {
+  background: var(--terracotta); color: #fff; font-size: 10px; font-weight: 700;
+  min-width: 16px; height: 16px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; padding: 0 4px;
+}
+.voile-notifications-centrale {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; display: flex; align-items: center; justify-content: center;
+}
+.boite-notifications-centrale {
+  background: var(--papier); border-radius: var(--r-lg); width: 92%; max-width: 420px; max-height: 70vh; overflow-y: auto; box-shadow: var(--ombre-forte);
+}
+.boite-notifications-centrale .entete-notif { display: flex; justify-content: space-between; align-items: center; padding: 16px; border-bottom: 1px solid var(--ligne); position: sticky; top: 0; background: var(--papier); }
+.ligne-notif-c { padding: 12px 16px; border-bottom: 1px solid var(--ligne); font-size: 13px; cursor: pointer; }
+.ligne-notif-c.non-lue { background: rgba(255,140,70,0.06); font-weight: 600; }
+.ligne-notif-c .date-notif-c { font-size: 11px; color: var(--ink-soft); margin-top: 3px; font-weight: 400; }
+
+/* --- Zone principale ------------------------------------------------------ */
+.principal { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.entete-panneau {
+  padding: 20px 28px; border-bottom: 1px solid var(--ligne); background: var(--papier);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+.entete-panneau h1 { font-size: 19px; }
+.entete-panneau .sous-titre { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+.panneau-contenu { padding: 22px 28px; flex: 1; }
+
+/* --- Boutons -------------------------------------------------------------- */
+.btn {
+  height: 38px; padding: 0 16px; border-radius: var(--r-sm); border: none; font-weight: 700; font-size: 13.5px;
+  display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+}
+.btn-primaire { background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-deep) 100%); color: var(--papier); box-shadow: var(--ombre-accent); }
+.btn-primaire:hover { filter: brightness(1.05); }
+.btn-secondaire { background: var(--peche); color: var(--ink); }
+.btn-discret { background: transparent; border: 1px solid var(--ligne); color: var(--ink-soft); }
+.btn-discret:hover { background: var(--creme); }
+.btn-alerte { background: var(--alerte-fond); color: var(--alerte); }
+.btn-petit { height: 30px; padding: 0 11px; font-size: 12.5px; }
+.btn:disabled { opacity: 0.5; pointer-events: none; }
+
+/* --- Cartes de synthese (KPI) --------------------------------------------- */
+.grille-kpi { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.carte-kpi { background: var(--papier); border: 1px solid var(--ligne); border-radius: var(--r-md); padding: 14px 16px; }
+.carte-kpi .valeur { font-family: var(--police-donnee); font-size: 22px; font-weight: 700; }
+.carte-kpi .label { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+.carte-kpi .valeur.negatif { color: var(--alerte); }
+.carte-kpi .valeur.positif { color: var(--valide); }
+
+/* --- Tableaux -------------------------------------------------------------- */
+.bloc-tableau { background: var(--papier); border: 1px solid var(--ligne); border-radius: var(--r-md); overflow: hidden; margin-bottom: 20px; }
+.barre-assignation-groupee {
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px; margin-bottom: 12px;
+  background: var(--papier); border: 1px solid var(--ligne); border-radius: var(--r-md); flex-wrap: wrap;
+}
+.barre-assignation-groupee select { height: 34px; border: 1.5px solid var(--ligne); border-radius: 8px; padding: 0 10px; background: var(--creme); }
+.compteur-selection { font-size: 12.5px; color: var(--ink-soft); font-weight: 700; }
+.tableau-titre { padding: 12px 16px; border-bottom: 1px solid var(--ligne); font-weight: 700; font-size: 13.5px; display: flex; justify-content: space-between; align-items: center; }
+table.donnees th {
+  text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft);
+  padding: 9px 14px; border-bottom: 1px solid var(--ligne); background: var(--creme);
+}
+table.donnees td { padding: 11px 14px; border-bottom: 1px solid var(--ligne); font-size: 13.5px; vertical-align: middle; }
+table.donnees tr:last-child td { border-bottom: none; }
+table.donnees tr:hover td { background: rgba(124,88,68,0.04); }
+.cellule-donnee { font-family: var(--police-donnee); font-weight: 700; }
+.cellule-actions { display: flex; gap: 6px; justify-content: flex-end; }
+
+.etat-vide-tableau { padding: 32px; text-align: center; color: var(--ink-soft); font-size: 13.5px; }
+.ligne-alerte-zone { background: rgba(217, 119, 6, 0.1) !important; }
+.ligne-alerte-zone:hover { background: rgba(217, 119, 6, 0.16) !important; }
+.badge-alerte-zone {
+  display: inline-block; margin-top: 4px; font-size: 11.5px; font-weight: 700;
+  color: #B45309; background: rgba(217, 119, 6, 0.16); border: 1px solid rgba(217, 119, 6, 0.4);
+  border-radius: 6px; padding: 3px 8px;
+}
+#recherche-commandes {
+  padding: 8px 12px; border-radius: var(--r-md); border: 1px solid var(--ligne);
+  font-size: 13px; background: var(--papier);
+}
+#recherche-commandes:focus { border-color: var(--terracotta); outline: none; }
+
+/* --- Tampon de statut (signature visuelle) --------------------------------- */
+.tampon {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--police-donnee); font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.04em; padding: 4px 10px; border-radius: 3px;
+  border: 1.5px solid currentColor; transform: rotate(-1.2deg);
+  white-space: nowrap;
+}
+.tampon.attente { color: var(--attente); background: var(--attente-fond); }
+.tampon.valide { color: var(--valide); background: var(--valide-fond); }
+.tampon.alerte { color: var(--alerte); background: var(--alerte-fond); }
+.tampon.neutre { color: var(--ink-soft); background: var(--creme); border-color: var(--ligne); }
+/* Vert contour (pas rempli) : une étape positive mais pas encore finale
+   (ramassé, au hub, en lot) — pour ne pas se confondre visuellement avec
+   "valide" plein, réservé aux statuts vraiment terminés (livré, terminée). */
+.tampon.valide-contour { color: var(--valide); background: transparent; }
+
+/* --- Formulaires ------------------------------------------------------------ */
+.formulaire { display: flex; flex-direction: column; gap: 14px; max-width: 560px; }
+.ligne-champs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.champ label { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink-soft); margin-bottom: 5px; }
+.champ input, .champ select, .champ textarea {
+  width: 100%; height: 38px; border: 1.5px solid var(--ligne); border-radius: var(--r-sm);
+  padding: 0 12px; background: var(--papier); color: var(--ink);
+}
+.champ textarea { height: auto; padding: 10px 12px; min-height: 70px; }
+.champ input:focus, .champ select:focus, .champ textarea:focus { border-color: var(--terracotta); outline: none; }
+.champ-aide { font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
+.champ-adresse-centrale { position: relative; }
+.liste-suggestions {
+  position: absolute; left: 0; right: 0; top: 100%; z-index: 20; margin-top: 4px;
+  background: var(--papier); border: 1.5px solid var(--ligne); border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(36, 26, 20, 0.18); max-height: 220px; overflow-y: auto;
+}
+.suggestion-adresse {
+  display: block; width: 100%; text-align: left; padding: 9px 12px; border: none;
+  background: none; font-size: 13px; color: var(--ink); border-bottom: 1px solid var(--ligne);
+}
+.suggestion-adresse:last-child { border-bottom: none; }
+.suggestion-adresse:hover, .suggestion-adresse:focus-visible { background: var(--creme); }
+
+.liste-colis-form { display: flex; flex-direction: column; gap: 10px; }
+.ligne-colis-form { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 8px; align-items: end; background: var(--creme); padding: 10px; border-radius: var(--r-sm); }
+.ligne-colis-form .champ { margin: 0; }
+
+/* --- Modales --------------------------------------------------------------- */
+.voile {
+  position: fixed; inset: 0; background: rgba(36,26,20,0.45);
+  display: flex; align-items: center; justify-content: center; z-index: 50; padding: 20px;
+}
+.boite-modale {
+  background: var(--papier); border-radius: var(--r-lg); padding: 24px; width: 100%; max-width: 520px;
+  max-height: 88vh; overflow-y: auto; box-shadow: var(--ombre-forte);
+}
+.boite-modale-large { max-width: 720px; }
+.boite-modale h2 { font-size: 17px; margin-bottom: 4px; }
+.boite-modale .sous-titre { font-size: 13px; color: var(--ink-soft); margin-bottom: 18px; }
+.boite-modale .actions-bas { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.boite-modale .cellule-actions .btn { white-space: nowrap; }
+
+.message-erreur { background: var(--alerte-fond); color: var(--alerte); font-size: 13px; font-weight: 600; padding: 9px 12px; border-radius: var(--r-sm); margin-bottom: 12px; display: none; }
+.message-erreur.visible { display: block; }
+.message-flash {
+  position: fixed; top: 18px; right: 24px; background: var(--valide); color: var(--papier);
+  font-weight: 700; font-size: 13.5px; padding: 12px 18px; border-radius: var(--r-md); box-shadow: var(--ombre-forte);
+  z-index: 60;
+}
+
+.chargement-panneau { padding: 40px; text-align: center; color: var(--ink-soft); }
+
+.lien-copie {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 700; color: var(--terracotta);
+  background: none; border: none; cursor: pointer;
+}
+
+@media (max-width: 860px) {
+  .sidebar { position: fixed; z-index: 40; transform: translateX(-100%); transition: transform 0.2s ease; }
+  .sidebar.ouverte { transform: translateX(0); }
+  .ligne-champs { grid-template-columns: 1fr; }
+}
+
+/* Prix estimé en direct dans le formulaire de commande interne */
+.prix-estime-centrale {
+  margin-top: 6px; font-size: 12.5px; font-weight: 700; color: var(--valide);
+}
+
+/* --- Page plateforme (super-admin, distincte de l'espace centrale) ------- */
+.app-plateforme { min-height: 100vh; display: flex; flex-direction: column; }
+.topbar-plateforme {
+  background: var(--ink); color: var(--papier); padding: 16px 28px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.topbar-plateforme .identite { display: flex; flex-direction: column; gap: 2px; }
+.topbar-plateforme .marque { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--peche); }
+.topbar-plateforme .nom { font-weight: 700; font-size: 15px; }
+.topbar-plateforme .btn-deconnexion {
+  background: rgba(255,241,232,0.1); color: var(--papier); border: none;
+  padding: 8px 16px; border-radius: 999px; font-size: 12.5px; font-weight: 700;
+}
+.avertissement-plateforme {
+  background: var(--attente-fond); color: var(--ink); font-size: 13px; line-height: 1.5;
+  padding: 12px 28px; margin: 0; border-bottom: 1px solid var(--ligne);
+}
+.contenu-plateforme { flex: 1; }

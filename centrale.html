@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IKMS — Centrale</title>
+<link rel="stylesheet" href="./assets/css/theme.css">
+<link rel="stylesheet" href="./assets/css/centrale.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-marque">
+      <div class="nom">IKMS</div>
+      <div class="entreprise">Espace centrale</div>
+    </div>
+    <nav class="sidebar-nav" id="sidebar-nav"></nav>
+    <div class="sidebar-pied">
+      <button class="btn-cloche-sidebar" id="btn-notifications" type="button">
+        🔔 Notifications <span class="bulle-cloche-sidebar" id="bulle-notifications" hidden>0</span>
+      </button>
+      <div class="nom-utilisateur" id="pied-nom">…</div>
+      <button id="btn-deconnexion" type="button">Se déconnecter</button>
+    </div>
+  </aside>
+
+  <main class="principal">
+    <header class="entete-panneau">
+      <div>
+        <h1 id="titre-panneau">Chargement…</h1>
+        <div class="sous-titre" id="sous-titre-panneau"></div>
+      </div>
+      <div id="actions-panneau"></div>
+    </header>
+    <div class="panneau-contenu" id="contenu-panneau">
+      <div class="chargement-panneau">Chargement…</div>
+    </div>
+  </main>
+</div>
+
+<script src="./assets/js/config.public.js"></script>
+<script type="module" src="./assets/js/app.js"></script>
+</body>
+</html>
